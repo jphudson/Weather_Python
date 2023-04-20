@@ -1,13 +1,15 @@
 from config import api_key
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
+from connect import *
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    city_name = input("Enter city name: ")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    weather_data = get_weather_data(city_name, api_key)
+
+    if weather_data:
+        print(f"Current temperature: {weather_data['main']['temp']}°C")
+        print(f"Humidity: {weather_data['main']['humidity']}%")
+        print(f"Wind speed: {weather_data['wind']['speed']} m/s")
+    else:
+        print("Unable to retrieve weather data.")
